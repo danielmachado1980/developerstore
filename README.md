@@ -7,21 +7,21 @@ To run this project, ensure you have the following installed on your machine:
 Getting Started
 Follow these steps to set up and run the project:
 
-1. Clone the Repository
+2. Clone the Repository
 Clone this repository to your local machine.
 ````
 git clone <repository-url>
 cd <repository-folder>
 ````
 
-2. Start Docker Containers
+3. Start Docker Containers
 Navigate to the root directory of the project and run the following command to start the required services using Docker Compose:
 ````
 docker-compose up -d
 ````
-3. Wait for the services to initialize completely.
+4. Wait for the services to initialize completely.
 
-4. Execute create tables script.
+5. Execute create tables script.
 ````
 CREATE TABLE "Sales" (
 	"Id" UUID NOT NULL DEFAULT gen_random_uuid(),
@@ -47,7 +47,8 @@ CREATE TABLE "SalesItem" (
 ;
 ````
 
-5. Access the Application Sales API
+6. Access the Application Sales API
+
 Then now you can follow the link:
 
 * Backend API (Swagger UI): http://localhost:8081/swagger/index.html

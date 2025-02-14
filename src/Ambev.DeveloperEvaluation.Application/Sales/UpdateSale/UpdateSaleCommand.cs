@@ -10,7 +10,7 @@ public record UpdateSaleCommand : IRequest<UpdateSaleResult>
     /// <summary>
     /// The unique identifier of the Sale to retrieve
     /// </summary>
-    public Guid Id { get; }
+    public Guid Id { get; set; }
 
     /// <summary>
     /// Initializes a new instance of GetSaleCommand

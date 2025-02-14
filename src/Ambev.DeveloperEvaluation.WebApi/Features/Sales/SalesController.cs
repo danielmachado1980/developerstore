@@ -8,6 +8,9 @@ using Ambev.DeveloperEvaluation.WebApi.Features.Sales.DeleteSale;
 using Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
 using Ambev.DeveloperEvaluation.Application.Sales.GetSale;
 using Ambev.DeveloperEvaluation.Application.Sales.DeleteSale;
+using Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
+using Ambev.DeveloperEvaluation.Common.Validation;
+using System.Threading;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales;
 
@@ -83,6 +86,25 @@ public class SalesController : BaseController
         var response = await _mediator.Send(command, cancellationToken);
 
         return Ok(response);
+    }
+
+    [HttpPut("{id}")]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> UpdateSale(Guid id, [FromBody] CreateSaleRequest request, CancellationToken cancellationToken)
+    {
+        var command = _mapper.Map<UpdateSaleCommand>(request);
+        command.Id = id;
+       
+        var response = await _mediator.Send(command, cancellationToken);
+
+        return Created(string.Empty, new ApiResponseWithData<CreateSaleResponse>
+        {
+            Success = true,
+            Message = "Sale updated successfully",
+            Data = _mapper.Map<CreateSaleResponse>(response)
+        });
     }
 
     /// <summary>
