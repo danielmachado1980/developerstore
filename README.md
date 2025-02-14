@@ -21,7 +21,13 @@ docker-compose up -d
 ````
 4. Wait for the services to initialize completely.
 
-5. Execute create tables script.
+5. Execute create tables script after access database service.
+
+ ```json
+   "ConnectionStrings": {
+     "DefaultConnection": "Host=localhost;Port=5432;Database=developer_evaluation;Username=developer;Password=ev@luAt10n"
+   }
+   ```
 ````
 CREATE TABLE "Sales" (
 	"Id" UUID NOT NULL DEFAULT gen_random_uuid(),
